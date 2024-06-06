@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISEAssignment1", "ISEAssignment1\ISEAssignment1.csproj", "{A1C755C2-5348-47A4-A9A5-1B0D34729AE7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task1Calculator", "Task1Calculator\Task1Calculator.csproj", "{A1C755C2-5348-47A4-A9A5-1B0D34729AE7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

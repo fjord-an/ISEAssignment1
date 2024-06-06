@@ -40,3 +40,4 @@ C:\Users\Jordan\Programs\projects\ISE-Assignment1\ISEAssignment1\ISEAssignment1\
 C:\Users\Jordan\Programs\projects\ISE-Assignment1\ISEAssignment1\ISEAssignment1\bin\Debug\net8.0\ISEAssignment1.pdb
 C:\Users\Jordan\Programs\projects\ISE-Assignment1\ISEAssignment1\ISEAssignment1\obj\Debug\net8.0\ISEAssignment1.genruntimeconfig.cache
 C:\Users\Jordan\Programs\projects\ISE-Assignment1\ISEAssignment1\ISEAssignment1\obj\Debug\net8.0\ref\ISEAssignment1.dll
+C:\Users\Jordan\Programs\projects\ISE-Assignment1\ISEAssignment1\ISEAssignment1\obj\Debug\net8.0\ISEAssignment1.sourcelink.json
