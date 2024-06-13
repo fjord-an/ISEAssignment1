@@ -1,36 +1,45 @@
 ﻿using System;
 using Microsoft.VisualBasic.CompilerServices;
 
-namespace ISEAssignment1
+namespace Calculator
 {
     class Program
     {
+        public static string inputStr = "0";
+        public static string errorMsg = null;
         private static void Main()
         {
-            void Calc(string errorMsg)
+            if (inputStr == "0")
             {
-                Display.CalculatorGraphic();
+                Display.CalculatorGraphic(inputStr, errorMsg);;
+            }
+            
+            static void Calc(string errorMsg, string inputStr)
+            {
                 if (errorMsg != null)
                 {
                     Console.WriteLine(errorMsg);
                 }
-
+                if (errorMsg == null)
+                {
+                    Console.Write(inputStr);
+                }
+                
                 Console.Clear(); //clears the console window to remove the previous graphic and any text/errors
-                Display.CalculatorGraphic();
+                Display.CalculatorGraphic(inputStr, errorMsg);
+                //Calc(errorMsg, inputStr);
             }
-
-            Display.CalculatorGraphic();
             
-            var
-                errorMsg = InputArea.Prompt()
-                    .Item2; //EpicKip. (2017, April 14). Answer to ‘Returning string and int from same method’. Stack Overflow. https://stackoverflow.com/a/43406662
-            var
-                input = InputArea.Prompt()
-                    .Item1; //Microsoft. (n.d.). Tuple<T1,T2>.Item1 Property (System). Retrieved 6 June 2024, from https://learn.microsoft.com/en-us/dotnet/api/system.tuple-2.item1?view=net-8.0
-
-            Calc(errorMsg); //calls the calculator graphic method with no error message
-
-            Console.WriteLine("\n\n asdf");
+            // The input prompt object returns either an integer if successful, or an error string if there's an error
+            // Therefore, the object is returned as a tuple, so they are assigned from the Tuple<>.Item# Properties
+            var userInput = InputArea.Prompt();
+            var errorMsg = userInput.Item2; 
+            //EpicKip. (2017, April 14). Answer to ‘Returning string and int from same method’. Stack Overflow. https://stackoverflow.com/a/43406662
+            var inputInt = userInput.Item1;
+            //Microsoft. (n.d.). Tuple<T1,T2>.Item1 Property (System). Retrieved 6 June 2024, from https://learn.microsoft.com/en-us/dotnet/api/system.tuple-2.item1?view=net-8.0
+            inputStr = Convert.ToString(userInput.Item1);
+            
+            Calc(errorMsg, inputStr); //calls the calculator graphic method with the error message if there's an error
 
             Main();
         }

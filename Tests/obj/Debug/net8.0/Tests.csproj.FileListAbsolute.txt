@@ -1,0 +1,14 @@
+C:\Users\Jordan\Programs\projects\ISE-Assignment1\ISEAssignment1\Tests\bin\Debug\net8.0\Tests.exe
+C:\Users\Jordan\Programs\projects\ISE-Assignment1\ISEAssignment1\Tests\bin\Debug\net8.0\Tests.deps.json
+C:\Users\Jordan\Programs\projects\ISE-Assignment1\ISEAssignment1\Tests\bin\Debug\net8.0\Tests.runtimeconfig.json
+C:\Users\Jordan\Programs\projects\ISE-Assignment1\ISEAssignment1\Tests\bin\Debug\net8.0\Tests.dll
+C:\Users\Jordan\Programs\projects\ISE-Assignment1\ISEAssignment1\Tests\bin\Debug\net8.0\Tests.pdb
+C:\Users\Jordan\Programs\projects\ISE-Assignment1\ISEAssignment1\Tests\obj\Debug\net8.0\Tests.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Jordan\Programs\projects\ISE-Assignment1\ISEAssignment1\Tests\obj\Debug\net8.0\Tests.AssemblyInfoInputs.cache
+C:\Users\Jordan\Programs\projects\ISE-Assignment1\ISEAssignment1\Tests\obj\Debug\net8.0\Tests.AssemblyInfo.cs
+C:\Users\Jordan\Programs\projects\ISE-Assignment1\ISEAssignment1\Tests\obj\Debug\net8.0\Tests.csproj.CoreCompileInputs.cache
+C:\Users\Jordan\Programs\projects\ISE-Assignment1\ISEAssignment1\Tests\obj\Debug\net8.0\Tests.dll
+C:\Users\Jordan\Programs\projects\ISE-Assignment1\ISEAssignment1\Tests\obj\Debug\net8.0\refint\Tests.dll
+C:\Users\Jordan\Programs\projects\ISE-Assignment1\ISEAssignment1\Tests\obj\Debug\net8.0\Tests.pdb
+C:\Users\Jordan\Programs\projects\ISE-Assignment1\ISEAssignment1\Tests\obj\Debug\net8.0\Tests.genruntimeconfig.cache
+C:\Users\Jordan\Programs\projects\ISE-Assignment1\ISEAssignment1\Tests\obj\Debug\net8.0\ref\Tests.dll

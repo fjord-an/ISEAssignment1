@@ -1,7 +1,12 @@
-namespace ISEAssignment1;
+namespace Calculator;
 
-static class InputArea
+public static class InputArea
 {
+    /***
+     * This method prompts the user for an integer input
+     * The method returns a tuple with both the integer input and an error message if there's an error
+     * The error message is null if the input is successful
+     */
     public static Tuple<int, string> Prompt()
     {
         // Reference: C# Tutorial - Try Catch Block | Mosh. (2015)
