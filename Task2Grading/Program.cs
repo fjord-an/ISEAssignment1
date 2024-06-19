@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MarkGrader
+﻿namespace Task2Grading
 {
     internal static class Program
     {

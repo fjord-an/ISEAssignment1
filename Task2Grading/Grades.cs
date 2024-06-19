@@ -1,6 +1,6 @@
-namespace MarkGrader;
+namespace Task2Grading;
 
-public class Grades
+public static class Grades
 {
     public static string Classifications(byte score)
     {
