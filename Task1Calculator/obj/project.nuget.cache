@@ -1,10 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LtSomWLRtxXZZ/juA3ThNNJwyXCV5rvbVf44CUJCyym+boWNEvwp8aGN0PbFkEII8Wz0ubAeybVmgsl0+KlFsA==",
+  "dgSpecHash": "mH097ewlG2MnxRNzcY04cxWk2JCjIaVHG7HRQZ0wZE+to8aRer1iPAOS2BltZ2iHOfZPssWHJ1NU2lbR+huOWw==",
   "success": true,
-  "projectFilePath": "/home/spacey/projects/ISE102-Assignment1/Task1Calculator/Task1Calculator.csproj",
-  "expectedPackageFiles": [
-    "/home/spacey/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.6/microsoft.aspnetcore.app.ref.8.0.6.nupkg.sha512"
-  ],
+  "projectFilePath": "C:\\Users\\Jordan\\Programs\\projects\\ISE-Assignment1\\ISEAssignment1\\Task1Calculator\\Task1Calculator.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }

@@ -14,40 +14,54 @@ static class Display
      * The caret (cursor) is placed at the first X in the graphic to show the value being entered. The cursor is
      * moved to the position of the X from line 2 (array index 2) of the graphic.
      */
-    public static void CalculatorGraphic(params string[] input)
+    public static void CalculatorGraphic(params string[] output) // accepts any number of string inputs as arguments
     {
-        var inputStr = string.Join("", input);
-        Console.SetCursorPosition(0,
-            0); //set cursor position to the top left of the console window to replace the graphic with the updated values!
-
+        Console.SetCursorPosition(0, 0); 
+        //set cursor position to the top left of the console window to replace the graphic with the updated values!
+        // this will draw the calculator graphic at the correct position each time the method is called
+        
         string calcGraphic =
-            """
-            +==========Calculator=========+
-            |                             |
-            |                             |
-            +=====+=====+=====+=====+=====+
-            | /  |  * | - | + | ^ | % | C |
-            +====+====+===+===+===+===+===+
-            """; //Multiline Strings in C# | Mosh. (2015)
-
+                 """
+                 +==========Calculator=========+
+                 |                             |
+                 |                             |
+                 +=====+=====+=====+=====+=====+
+                 | /  |  * | - | + | ^ | % | C |
+                 +====+====+===+===+===+===+===+
+                 """; //Multiline Strings in C# | Mosh. (2015)
+        
+        string inputStr = string.Join("", output[0]);
+        string errorMsg = output[1];
+        
         string[] calcGraphicLines = calcGraphic.Split('\n');
-        var caretIndex = input.Length > 1 ? input.Length : 2;
+        string inputLine = calcGraphicLines[1];
+        string outputLine = calcGraphicLines[2];
+        int caretIndex = output.Length > 1 ? output.Length : 2;
         // ternary operator to check if there's an input, if there is, set the caret index to the length of the input
         // else set the cursor to number character 2 in the graphic
+        
+        // write output data to the calculator graphic array (error message, input values, calculations, etc.)
+        calcGraphicLines[1] = inputLine.Substring(0, caretIndex)
+                              + (inputStr != "0" ? inputStr : '?') +
+                                inputLine.Substring(caretIndex, 
+                                  inputLine.Length - caretIndex - inputStr.Length - 2) + '|';
+        // ^ ternary operation: If input is not 0 (default), replace caret index with input value, else replace with '?'. 
+        if (errorMsg != null)
+            calcGraphicLines[2] = outputLine.Substring(0, 2) + errorMsg + 
+                                          outputLine.Substring(errorMsg.Length,
+                                              outputLine.Length - errorMsg.Length - 4) + '|';
+        // Concatenate remaining characters to maintain graphic structure. 
+        // Calculate remaining string length considering input/output length, caret index and spacing.
+        
+        
 
-        for (int i = 0; i < caretIndex; i++)
-        {
-            //append a space to the caret index string to move it to the right
-            calcGraphicLines[1] = calcGraphicLines[1].Substring(0, caretIndex) + (inputStr != "0" ? inputStr : '?') +
-                                  calcGraphicLines[1].Substring(caretIndex + 1);
-        }
-
-        foreach (var line in calcGraphicLines)
+        foreach (var line in calcGraphicLines) // then write each line of the calculator graphic
         {
             Console.WriteLine(line);
+            //prints each line of the calculator graphic
         }
 
         Console.SetCursorPosition(caretIndex, 1);
-        //sets the cursor position to the caret index to show the value being entered
+        //sets the cursor position to the caret index (x), and the index of the input line (y) of the console window
     }
 }

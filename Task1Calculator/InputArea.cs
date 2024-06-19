@@ -12,12 +12,19 @@ public static class InputArea
         // Reference: C# Tutorial - Try Catch Block | Mosh. (2015)
         try //Exceptions | LinkedIn Learning. (2023). Retrieved 5 June 2024, from https://www.linkedin.com/learning/learning-c-sharp-8581491/exceptions?resume=false&u=56744473
         {
-            var input = int.Parse(Console.ReadLine());
+            int input = int.TryParse(Console.ReadLine(), out int result) ? result : throw new Exception("Invalid input");
+            // The input is parsed to an integer, if the parsing is successful, the result is assigned to the input variable
+            // If the parsing is unsuccessful, an exception is thrown with the message "Invalid input". This is done using
+            // the ternary operator to check if the parsing is successful, if it is, the statement will be true and return
+            // result variable to in the input variable, else it will throw an exception with the message "Invalid input"
+            
             return new Tuple<int, string>(input, null);
+            // If the input is successful, the method returns a tuple with the input and a null error message
         }
         catch (Exception e)
         {
             return new Tuple<int, string>(0, e.Message);
+            // If there's an exception, the method returns a tuple with empty input and the exception message to display
         }
     }
 }
