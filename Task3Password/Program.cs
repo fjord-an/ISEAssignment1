@@ -6,7 +6,7 @@ namespace Password
     {
         static void Main()
         {
-            if 
+            if()
             Console.WriteLine("Enter a password: ");
             string password = Console.ReadLine();
             Console

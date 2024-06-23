@@ -15,14 +15,13 @@ namespace Calculator
     // }
     public class Equation
     { //fields: operands and operations
-        public int[] _operands;
-        public char[] _operations;
-        public char[] _operators;
+        public int[] _terms;
+        public List<string> _operations;
         
-        public Equation(string[] rawInput) // Constructor
+        public Equation(List<string> operations, string[] terms) // Constructor
         {
-            this._operators = ['+', '-', '*', '/', '%', '^'];
-            rawInput.Select(int.Parse).ToArray();
+            this._operations = operations;
+            this._terms = int.Parse(terms);
         }
 
         int Calculate() // Method to calculate the result of the equation
