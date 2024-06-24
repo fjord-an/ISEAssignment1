@@ -29,8 +29,8 @@ namespace Calculator
 
                 // The input prompt object returns either an integer if successful, or an error string if there's an error
                 // Therefore, the object is returned as a tuple, so they are assigned from the Tuple<>.Item# Properties
-                Tuple<int, string> userInput = new InputArea().Prompt();
-                errorMsg = userInput.Item2;
+                Equation userInput = new InputArea().Prompt();
+                errorMsg = userInput[0];
                 //EpicKip. (2017, April 14). Answer to ‘Returning string and int from same method’. Stack Overflow. https://stackoverflow.com/a/43406662
                 var inputInt = userInput.Item1;
                 //Microsoft. (n.d.). Tuple<T1,T2>.Item1 Property (System). Retrieved 6 June 2024, from https://learn.microsoft.com/en-us/dotnet/api/system.tuple-2.item1?view=net-8.0

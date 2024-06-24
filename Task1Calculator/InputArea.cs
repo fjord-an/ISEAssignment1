@@ -2,20 +2,22 @@ using Microsoft.VisualBasic.CompilerServices;
 
 namespace Calculator;
 
-public class InputArea
+internal class InputArea
 {
     public char[] operators = ['+', '-', '*', '/', '%', '^'];
-    public char[] operands = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-    public List<string> operations = new List<string>();
+    public List<int> operands = new List<int>();         // create a list to store the operands (or terms)
+    public List<string> operations = new List<string>(); // create a list to store the operations (or operators)
     /***
      * This method prompts the user for an integer input
      * The method returns a tuple with both the integer input and an error message if there's an error
      * The error message is null if the input is successful
      */
-    public Equation Prompt()
+    internal Equation Prompt()
     {
-        // Reference: C# Tutorial - Try Catch Block | Mosh. (2015)
-        try //Exceptions | LinkedIn Learning. (2023). Retrieved 5 June 2024, from https://www.linkedin.com/learning/learning-c-sharp-8581491/exceptions?resume=false&u=56744473
+        /* Reference: C# Tutorial - Try Catch Block | Mosh. (2015)
+        Exceptions | LinkedIn Learning. (2023). Retrieved 5 June 2024,
+        from https://www.linkedin.com/learning/learning-c-sharp-8581491/exceptions?resume=false&u=56744473 */
+        try 
         {
             string rawInput = Console.ReadLine();
             string[] terms = rawInput.Split(this.operators);
@@ -25,7 +27,8 @@ public class InputArea
                 int result = int.TryParse(i, out int operand)
                     ? operand
                     : throw new Exception("Invalid input");
-            }
+                operands.Add(result);
+            }//####################### REFACTOR RESULT TO OPERAND. DEBUG WHAT IS THE OUT INT DOING? BUFFER?
             
             foreach (char c in rawInput)
             {
@@ -41,7 +44,7 @@ public class InputArea
             // the ternary operator to check if the parsing is successful, if it is, the statement will be true and return
             // result variable to in the input variable, else it will throw an exception with the message "Invalid input"
 
-            return new Equation(operations, terms);
+            return new Equation(operations, operands);
 
             // #### return new Tuple<int, string>(2, null); old return value 
 
@@ -49,8 +52,11 @@ public class InputArea
         }
         catch (Exception e)
         {
-            return new Equation(null, e.Message);
-            // If there's an exception, the method returns a tuple with empty input and the exception message to display
+            List<string> error = new List<string>();
+            error.Add(e.Message);
+            return new Equation(error, null);
+            // error message is passed with the exception message, and the input is null.
+            // that way the error message is displayed in the calculator graphic instead of the input
         }
     }
 }

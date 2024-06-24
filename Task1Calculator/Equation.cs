@@ -3,35 +3,51 @@ using System.Runtime.InteropServices.JavaScript;
 
 namespace Calculator
 {
-    // public enum Operations
-    // {
-    //     Add = '+',
-    //     Subtract = '-',
-    //     Multiply = '*',
-    //     Divide = '/',
-    //     Modulus = '%',
-    //     Power = '^',
-    //     Invalid = ' '
-    // }
-    public class Equation
+    internal class Equation
     { //fields: operands and operations
-        public int[] _terms;
+        public List<int> _terms;
         public List<string> _operations;
         
-        public Equation(List<string> operations, string[] terms) // Constructor
+        internal Equation(List<string> operations, List<int> terms) // Constructor
         {
             this._operations = operations;
-            this._terms = int.Parse(terms);
+            this._terms = terms;
         }
 
         int Calculate() // Method to calculate the result of the equation
         {
             
-            int result = _operands[0]; // Initialize the result with the first operand
-            for (int i = 1; i < _operands.Length; i++) // Loop through the remaining operands
-            {
-            }
+            _operations.ForEach(Calculate); // Initialize the result with the first operand
+            int result = _terms[1]; // Initialize the result with the first operand
             return result; // Return the final result
+        }
+
+        private void Calculate(string _operations)
+        {
+            switch (_operations)
+            {
+                case "+":
+                    _terms[1] = _terms[0] + _terms[1];
+                    break;
+                case "-":
+                    _terms[1] = _terms[0] - _terms[1];
+                    break;
+                case "*":
+                    _terms[1] = _terms[0] * _terms[1];
+                    break;
+                case "/":
+                    _terms[1] = _terms[0] / _terms[1];
+                    break;
+                case "%":
+                    _terms[1] = _terms[0] % _terms[1];
+                    break;
+                case "^":
+                    _terms[1] = _terms[0] ^ _terms[1];
+                    break;
+                default:
+                    this._operations.Add("Invalid operation");
+                    break;
+            }
         }
     }   
 }
