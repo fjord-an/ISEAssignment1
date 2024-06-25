@@ -28,6 +28,7 @@ static class Display
                  +=====+=====+=====+=====+=====+
                  | /  |  * | - | + | ^ | % | C |
                  +====+====+===+===+===+===+===+
+                 +======<Press X to quit>======+
                  """; //Multiline Strings in C# | Mosh. (2015)
         
         string inputStr = string.Join("", output[0]);

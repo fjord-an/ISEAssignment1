@@ -23,21 +23,14 @@ namespace Calculator
         }
         private static void Main()
         {
-            Thread exit = new Thread(EndingLoop);
-            exit.Start(); // !!!!!!!!Thread fails after first input. Must be recreated to work again.
-            string inputStr = "0";
-            string errorMsg = "";
+            string inputStr = ""; // initializes the input string to an empty string
+            string errorMsg = ""; // initializes the error message to an empty string
             while (true)
             {
-                if (inputStr == "0")
-                {
-                    Console.Clear();
-                    Display.CalculatorGraphic(inputStr, errorMsg);
-                }
-                else if (inputStr == "x" || inputStr == "X") //if the user enters 'x' or 'X', the program will exit
-                {
-                    break; //cannot exit as the inputarea.cs catches any input thats not an integer
-                }
+                Thread exit = new Thread(EndingLoop);
+                exit.Start(); // starts the thread to check for the exit key each time the calculator is run
+                Console.Clear(); //clears the console window to remove the previous graphic and output instances
+                Display.CalculatorGraphic(errorMsg, inputStr);
                 
                 static void Calc(string errorMsg, string inputStr)
                 {
@@ -54,7 +47,7 @@ namespace Calculator
                 
                 //Microsoft. (n.d.). Tuple<T1,T2>.Item1 Property (System). Retrieved 6 June 2024, from https://learn.microsoft.com/en-us/dotnet/api/system.tuple-2.item1?view=net-8.0
                 
-                Calc(errorMsg, inputStr); //calls the calculator graphic method with the error message if there's an error
+                // Calc(errorMsg, inputStr); //calls the calculator graphic method with the error message if there's an error
             }
         }
     }
