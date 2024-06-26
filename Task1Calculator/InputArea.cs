@@ -22,6 +22,7 @@ internal class InputArea
             char[] operators = ['+', '-', '*', '/', '%', '^'];
             string rawInput = Console.ReadLine();
             string[] terms = rawInput.Split(operators);
+            char[] rawChars = rawInput.ToCharArray();
             output.Add(rawInput);
             
             foreach (string i in terms) // iterate through the terms and convert them to integers
@@ -31,21 +32,25 @@ internal class InputArea
                     : throw new Exception("Invalid input (operands)"); // else throw an exception
                 operands.Add(num);
             }
-            
+
+            int j = 0;
             byte signCount = 0;
-            for(int i = 0; i < operators.Length; i++) // iterate through the operators and check if the input contains any of them
+            foreach (char c in rawChars) // iterate through the operators and check if the input contains any of them
             {   // used the for loop instead of foreach in this instance because i need the number of iterations and index of operator
-                char sign = operators[i]; //sign is the current operator in the iteration
-                if (rawInput.Contains(sign))
-                {
-                    signCount++;
-                    this.output.Add(sign.ToString());
-                }
-                else if (signCount == 0 && i == operators.Length - 1) // need to - 1 as the length of the array is 6
-                                                                      // but the index is 0-5
-                {
-                    this.output.Add("Invalid Operator Signs"); // if no operator is found, add an error message to the output
-                }
+                 //sign is the current operator in the iteration
+                 j++;
+                 foreach (char o in operators)
+                 {
+                     if (c == o)
+                     {
+                         signCount++;
+                         this.output.Add(c.ToString());
+                     }
+                     else if (signCount == 0 && j == rawChars.Length)
+                     {
+                         this.output.Add("Invalid input (operators)");
+                     }
+                 }
             }
             
             // if (rawInput.Contains(operators))

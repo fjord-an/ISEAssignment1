@@ -4,46 +4,43 @@ namespace Calculator
     { //fields: operands and operations
         internal List<double> Terms;
         internal List<string> Operations;
+        internal double Result;
         
         internal Equation(List<string> output, List<double> operands) // Constructor
         {
             this.Operations = output;
             this.Terms = operands;
-            Operations.Add(Calculate()); // Call the Calculate method to calculate the result of the equation
+            for(int i = 0; i < Operations.Count - 1; i++)
+                Result = Calculate(i);
+            // Call the Calculate method to calculate the result of the equation
         }
-
-        // int Calculate() // Method to calculate the result of the equation
-        // {
-        //     _operations.ForEach(Calculate); // Initialize the result with the first operand
-        //     int result = _terms[1]; // Initialize the result with the first operand
-        //     return result; // Return the final result
-        // }
-
-        private string Calculate()
+        
+        private double Calculate(int i)
         {
             double result;
-            switch (Operations[1])
+            
+            switch (Operations[i+1])
             {
                 case "+":
-                    result = Terms[0] + Terms[1];
-                    return result.ToString();
+                    result = (Result <= 0 ? Terms[i] : Result) + Terms[i + 1];
+                    return result;
                 case "-":
-                    result = Terms[0] - Terms[1];
-                    return result.ToString();
+                    result = (Result <= 0 ? Terms[i] : Result) - Terms[i + 1];
+                    return result;
                 case "*":
-                    result = Terms[0] * Terms[1];
-                    return result.ToString();
+                    result = (Result <= 0 ? Terms[i] : Result) * Terms[i + 1];
+                    return result;
                 case "/":
-                    result = Terms[0] / Terms[1];
-                    return result.ToString();
+                    result = (Result <= 0 ? Terms[i] : Result) / Terms[i + 1];
+                    return result;
                 case "%":
-                    result = Terms[0] % Terms[1];
-                    return result.ToString();
+                    result = (Result <= 0 ? Terms[i] : Result) % Terms[i + 1];
+                    return result;
                 case "^":
-                    result = Math.Pow(Terms[0], Terms[1]);
-                    return result.ToString();
+                    result = Math.Pow((Result <= 0 ? Terms[i] : Result), Terms[i + 1]);
+                    return result;
                 default:
-                    return "Cannot calculate";
+                    return 0;
             }
         }
     }
