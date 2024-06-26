@@ -1,53 +1,50 @@
-using System.Reflection.Metadata;
-using System.Runtime.InteropServices.JavaScript;
-
 namespace Calculator
 {
     internal class Equation
     { //fields: operands and operations
-        public List<int> _terms;
-        public List<string> _operations;
+        internal List<double> Terms;
+        internal List<string> Operations;
         
-        internal Equation(List<string> output, List<int> operands) // Constructor
+        internal Equation(List<string> output, List<double> operands) // Constructor
         {
-            this._operations = output;
-            this._terms = operands;
+            this.Operations = output;
+            this.Terms = operands;
+            Operations.Add(Calculate()); // Call the Calculate method to calculate the result of the equation
         }
 
-        int Calculate() // Method to calculate the result of the equation
-        {
-            
-            _operations.ForEach(Calculate); // Initialize the result with the first operand
-            int result = _terms[1]; // Initialize the result with the first operand
-            return result; // Return the final result
-        }
+        // int Calculate() // Method to calculate the result of the equation
+        // {
+        //     _operations.ForEach(Calculate); // Initialize the result with the first operand
+        //     int result = _terms[1]; // Initialize the result with the first operand
+        //     return result; // Return the final result
+        // }
 
-        private void Calculate(string _operations)
+        private string Calculate()
         {
-            switch (_operations)
+            double result;
+            switch (Operations[1])
             {
                 case "+":
-                    _terms[1] = _terms[0] + _terms[1];
-                    break;
+                    result = Terms[0] + Terms[1];
+                    return result.ToString();
                 case "-":
-                    _terms[1] = _terms[0] - _terms[1];
-                    break;
+                    result = Terms[0] - Terms[1];
+                    return result.ToString();
                 case "*":
-                    _terms[1] = _terms[0] * _terms[1];
-                    break;
+                    result = Terms[0] * Terms[1];
+                    return result.ToString();
                 case "/":
-                    _terms[1] = _terms[0] / _terms[1];
-                    break;
+                    result = Terms[0] / Terms[1];
+                    return result.ToString();
                 case "%":
-                    _terms[1] = _terms[0] % _terms[1];
-                    break;
+                    result = Terms[0] % Terms[1];
+                    return result.ToString();
                 case "^":
-                    _terms[1] = _terms[0] ^ _terms[1];
-                    break;
+                    result = Math.Pow(Terms[0], Terms[1]);
+                    return result.ToString();
                 default:
-                    this._operations.Add("Invalid operation");
-                    break;
+                    return "Cannot calculate";
             }
         }
-    }   
+    }
 }

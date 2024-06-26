@@ -2,13 +2,13 @@
 {
     class Program
     {
-        private static char x;
+        private static char q;
         internal static void EndingLoop() // Method checking for the exit key, executed in a separate thread called from Main()
         {
-            while (x != 'x' || x != 'X')
+            while (q != 'q' || q != 'Q')
             {
-                x = Console.ReadKey().KeyChar;
-                if (x == 'x' || x == 'X')
+                q = Console.ReadKey().KeyChar;
+                if (q == 'q' || q == 'Q')
                 {
                     Console.Clear();
                     Console.WriteLine("Goodbye!");
@@ -22,7 +22,7 @@
         {
             string inputStr = "";   // initializes the input string to an empty string
             string errorMsg = "";   // initializes the error message to an empty string
-            while (!inputStr.Contains('x'))
+            while (!inputStr.Contains('q') && !inputStr.Contains('Q')) // loop until user enters 'q' or 'Q' in the input
             {
                 Console.Clear();    //clears the console window to remove the previous graphic and output instances
                 Display.CalculatorGraphic(errorMsg, inputStr);
@@ -30,8 +30,8 @@
                 // Therefore, the object is returned as a tuple, so they are assigned from the Tuple<>.Item# Properties
                 
                 Equation userInput = new InputArea().Prompt();
-                errorMsg = userInput._operations[^1];
-                inputStr = userInput._operations[0];
+                errorMsg = userInput.Operations[^1];
+                inputStr = userInput.Operations[0];
                 
 
                 //EpicKip. (2017, April 14). Answer to ‘Returning string and int from same method’. Stack Overflow. https://stackoverflow.com/a/43406662
@@ -41,7 +41,7 @@
                 // Calc(errorMsg, inputStr); //calls the calculator graphic method with the error message if there's an error
             }
             Console.Clear();
-            Console.WriteLine("Program exited. X was entered");
+            Console.WriteLine("Q was entered: exiting calculator..."); // exit message
         }
     }
 }

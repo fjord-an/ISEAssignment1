@@ -4,7 +4,7 @@ namespace Calculator;
 
 internal class InputArea
 {
-    internal List<int> operands = new List<int>();         // create a list to store the operands (or terms)
+    internal List<double> operands = new List<double>();         // create a list to store the operands (or terms)
     internal List<string> operations = new List<string>(); // create a list to store the operations (or operators)
     public List<string> output = new List<string>();
     /***
@@ -26,7 +26,7 @@ internal class InputArea
             
             foreach (string i in terms) // iterate through the terms and convert them to integers
             {// also check if the input is a valid integer, if not, throw an exception
-                int result = int.TryParse(i, out int num)
+                double result = double.TryParse(i, out double num)
                     ? num // if the parsing is successful, assign the result to the num variable with ternary operator
                     : throw new Exception("Invalid input (operands)"); // else throw an exception
                 operands.Add(num);
