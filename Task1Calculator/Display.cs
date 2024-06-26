@@ -31,26 +31,28 @@ static class Display
                  +======<Press X to quit>======+
                  """; //Multiline Strings in C# | Mosh. (2015)
         
-        string inputStr = string.Join("", output[0]);
+        string inputStr = output[0];
         string errorMsg = output[1];
         
         string[] calcGraphicLines = calcGraphic.Split('\n');
         string inputLine = calcGraphicLines[1];
         string outputLine = calcGraphicLines[2];
-        int caretIndex = output.Length > 1 ? output.Length : 2;
+        // int caretIndex = output[0].Length > 1 ? output[0].Length : 2;
+        int caretIndex = 2;
+        
         // ternary operator to check if there's an input, if there is, set the caret index to the length of the input
         // else set the cursor to number character 2 in the graphic
         
         // write output data to the calculator graphic array (error message, input values, calculations, etc.)
-        calcGraphicLines[1] = inputLine.Substring(0, caretIndex)
-                              + (inputStr != "0" ? inputStr : '?') +
-                                inputLine.Substring(caretIndex, 
-                                  inputLine.Length - caretIndex - inputStr.Length - 2) + '|';
+        calcGraphicLines[1] = inputLine.Substring(0, caretIndex) //calcGraphicLines[1] is the input line
+                              + (inputStr != "" || inputStr != "0" ? inputStr : '?') //caretIndex is the position of the cursor
+                              + inputLine.Substring(caretIndex,
+                                  inputLine.Length - inputStr.Length - 2) + '|';
         // ^ ternary operation: If input is not 0 (default), replace caret index with input value, else replace with '?'. 
-        if (errorMsg != null)
+        if (errorMsg != "")
             calcGraphicLines[2] = outputLine.Substring(0, 2) + errorMsg + 
                                           outputLine.Substring(errorMsg.Length,
-                                              outputLine.Length - errorMsg.Length - 4) + '|';
+                                              outputLine.Length - errorMsg.Length) + '|';
         // Concatenate remaining characters to maintain graphic structure. 
         // Calculate remaining string length considering input/output length, caret index and spacing.
         

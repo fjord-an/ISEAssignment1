@@ -8,10 +8,10 @@ namespace Calculator
         public List<int> _terms;
         public List<string> _operations;
         
-        internal Equation(List<string> operations, List<int> terms) // Constructor
+        internal Equation(List<string> output, List<int> operands) // Constructor
         {
-            this._operations = operations;
-            this._terms = terms;
+            this._operations = output;
+            this._terms = operands;
         }
 
         int Calculate() // Method to calculate the result of the equation

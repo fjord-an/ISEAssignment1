@@ -4,9 +4,10 @@ namespace Calculator;
 
 internal class InputArea
 {
-    public char[] operators = ['+', '-', '*', '/', '%', '^'];
-    public List<int> operands = new List<int>();         // create a list to store the operands (or terms)
-    public List<string> operations = new List<string>(); // create a list to store the operations (or operators)
+    internal char[] operators = ['+', '-', '*', '/', '%', '^'];
+    internal List<int> operands = new List<int>();         // create a list to store the operands (or terms)
+    internal List<string> operations = new List<string>(); // create a list to store the operations (or operators)
+    internal List<string> output = new List<string>();
     /***
      * This method prompts the user for an integer input
      * The method returns a tuple with both the integer input and an error message if there's an error
@@ -21,31 +22,32 @@ internal class InputArea
         {
             string rawInput = Console.ReadLine();
             string[] terms = rawInput.Split(this.operators);
+            output.Add(rawInput);
             
             foreach (string i in terms) // iterate through the terms and convert them to integers
             {// also check if the input is a valid integer, if not, throw an exception
                 int result = int.TryParse(i, out int num)
                     ? num // if the parsing is successful, assign the result to the num variable with ternary operator
-                    : throw new Exception("Invalid input"); // else throw an exception
+                    : throw new Exception("Invalid input (operands)"); // else throw an exception
                 operands.Add(num);
             }
             
-            foreach (char c in rawInput)
+            foreach (char c in operators)
             {
-                if (this.operators.Contains(c))
+                if (rawInput.Contains(c))
                 {
-                    this.operations.Add(c.ToString());
+                    this.output.Add(c.ToString());
                 }
             }
             
-            if (this.operations.Count == 0)
+            if (operations.Count == 0)
             {
-                throw new Exception("Invalid input");
+                throw new Exception("No Operation Found");
             }
             
-            if (this.operations.Count < this.operands.Count)
+            if (operations.Count > this.operands.Count)
             {
-                throw new Exception("Invalid input");
+                throw new Exception("Invalid Operation Count");
             }
             
             /*
@@ -55,7 +57,7 @@ internal class InputArea
             result variable to in the input variable, else it will throw an exception with the message "Invalid input"
             */
 
-            return new Equation(operations, operands);
+            return new Equation(output, operands);
 
             // #### return new Tuple<int, string>(2, null); old return value 
 
@@ -64,12 +66,9 @@ internal class InputArea
         }
         catch (Exception e)
         {
-            List<string> error = new List<string>();
-            error.Add(e.Message);
-            List<int> output = new List<int>(); // if there's an error, the output is set to 0 to return a value
-            output.Add(0);                      // this stops the referencing of a null object error
-            return new Equation(error, output);
-            // error message is passed with the exception message, and the input is null.
+            output.Add(e.Message);
+            return new Equation(output, operands);
+            // error message is passed with the exception message through the output paramter. the input is null.
             // that way the error message is displayed in the calculator graphic instead of the input
         }
     }

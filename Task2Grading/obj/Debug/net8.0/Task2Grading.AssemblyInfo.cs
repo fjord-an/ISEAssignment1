@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Task2Grading")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f8b2c82c883d781a407f958d436f36f49df7ad48")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+caf5ebf9c72af44c0c1028ca0e10cb6f58843af0")]
 [assembly: System.Reflection.AssemblyProductAttribute("Task2Grading")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Task2Grading")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
