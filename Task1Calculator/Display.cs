@@ -22,14 +22,19 @@ static class Display
         
         string calcGraphic =
                  """
-                 +==========Calculator=========+
-                 |                             |
-                 |                             |
-                 +====+===+===+===+===+===+====+
-                 |  / | * | - | + | ^ | % | Q  |
-                 +====+===+===+===+===+===+====+
-                 +======<Enter Q to Quit>======+
-                 """; //Multiline Strings in C# | Mosh. (2015)
+                 +===========Calculator============+
+                 |                                 |
+                 |                                 |
+                 +===+===+===+===+===+===+===+=====+
+                 | / | * | - | + | ^ | % | Q | U/D |
+                 +===+===+===+===+===+===+===+=====+
+                 |Enter Q to Quit|=|Up/Down History|
+                 ===================================
+                 
+                 Note: History in Powershell only
+                 """; 
+        //PLEASE NOTE: The input history feature only works in windows terminal (powershell)
+        //Multiline Strings in C# | Mosh. (2015)
         
         string inputStr = output[1];
         string errorMsg = output[0];
