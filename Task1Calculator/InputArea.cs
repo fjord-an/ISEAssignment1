@@ -4,10 +4,9 @@ namespace Calculator;
 
 internal class InputArea
 {
-    internal char[] operators = ['+', '-', '*', '/', '%', '^'];
     internal List<int> operands = new List<int>();         // create a list to store the operands (or terms)
     internal List<string> operations = new List<string>(); // create a list to store the operations (or operators)
-    internal List<string> output = new List<string>();
+    public List<string> output = new List<string>();
     /***
      * This method prompts the user for an integer input
      * The method returns a tuple with both the integer input and an error message if there's an error
@@ -20,8 +19,9 @@ internal class InputArea
         from https://www.linkedin.com/learning/learning-c-sharp-8581491/exceptions?resume=false&u=56744473 */
         try 
         {
+            char[] operators = ['+', '-', '*', '/', '%', '^'];
             string rawInput = Console.ReadLine();
-            string[] terms = rawInput.Split(this.operators);
+            string[] terms = rawInput.Split(operators);
             output.Add(rawInput);
             
             foreach (string i in terms) // iterate through the terms and convert them to integers
@@ -32,18 +32,26 @@ internal class InputArea
                 operands.Add(num);
             }
             
-            foreach (char c in operators)
-            {
-                if (rawInput.Contains(c))
+            byte signCount = 0;
+            for(int i = 0; i < operators.Length; i++) // iterate through the operators and check if the input contains any of them
+            {   // used the for loop instead of foreach in this instance because i need the number of iterations and index of operator
+                char sign = operators[i]; //sign is the current operator in the iteration
+                if (rawInput.Contains(sign))
                 {
-                    this.output.Add(c.ToString());
+                    signCount++;
+                    this.output.Add(sign.ToString());
+                }
+                else if (signCount == 0 && i == operators.Length - 1) // need to - 1 as the length of the array is 6
+                                                                      // but the index is 0-5
+                {
+                    this.output.Add("Invalid Operator Signs"); // if no operator is found, add an error message to the output
                 }
             }
             
-            if (operations.Count == 0)
-            {
-                throw new Exception("No Operation Found");
-            }
+            // if (rawInput.Contains(operators))
+            // {
+            //     throw new Exception("No Operation Found");
+            // }
             
             if (operations.Count > this.operands.Count)
             {

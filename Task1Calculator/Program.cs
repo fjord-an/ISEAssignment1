@@ -31,7 +31,7 @@
                 
                 Equation userInput = new InputArea().Prompt();
                 errorMsg = userInput._operations[^1];
-                inputStr = userInput._terms[^1].ToString();
+                inputStr = userInput._operations[0];
                 
 
                 //EpicKip. (2017, April 14). Answer to ‘Returning string and int from same method’. Stack Overflow. https://stackoverflow.com/a/43406662

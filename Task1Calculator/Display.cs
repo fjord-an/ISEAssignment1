@@ -31,8 +31,8 @@ static class Display
                  +======<Press X to quit>======+
                  """; //Multiline Strings in C# | Mosh. (2015)
         
-        string inputStr = output[0];
-        string errorMsg = output[1];
+        string inputStr = output[1];
+        string errorMsg = output[0];
         
         string[] calcGraphicLines = calcGraphic.Split('\n');
         string inputLine = calcGraphicLines[1];
@@ -47,12 +47,12 @@ static class Display
         calcGraphicLines[1] = inputLine.Substring(0, caretIndex) //calcGraphicLines[1] is the input line
                               + (inputStr != "" || inputStr != "0" ? inputStr : '?') //caretIndex is the position of the cursor
                               + inputLine.Substring(caretIndex,
-                                  inputLine.Length - inputStr.Length - 2) + '|';
+                                  inputLine.Length - inputStr.Length - 4) + '|';
         // ^ ternary operation: If input is not 0 (default), replace caret index with input value, else replace with '?'. 
         if (errorMsg != "")
-            calcGraphicLines[2] = outputLine.Substring(0, 2) + errorMsg + 
+            calcGraphicLines[2] = outputLine.Substring(0, caretIndex) + errorMsg + 
                                           outputLine.Substring(errorMsg.Length,
-                                              outputLine.Length - errorMsg.Length) + '|';
+                                              outputLine.Length - errorMsg.Length - 4) + '|';
         // Concatenate remaining characters to maintain graphic structure. 
         // Calculate remaining string length considering input/output length, caret index and spacing.
         
