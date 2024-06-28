@@ -31,7 +31,7 @@ static class Display
                  |Enter Q to Quit|=|Up/Down History|
                  ===================================
                  
-                 Note: History in Powershell only
+                  Note: History in Powershell only
                  """; 
         //PLEASE NOTE: The input history feature only works in windows terminal (powershell)
         //Multiline Strings in C# | Mosh. (2015)
@@ -52,7 +52,7 @@ static class Display
         calcGraphicLines[1] = inputLine.Substring(0, caretIndex) //calcGraphicLines[1] is the input line
                               + (inputStr != "" || inputStr != "0" ? inputStr : '?') //caretIndex is the position of the cursor
                               + inputLine.Substring(caretIndex,
-                                  inputLine.Length - inputStr.Length - 4) + '|';
+                                  inputLine.Length - inputStr.Length - 3) + '|';
         // ^ ternary operation: If input is not 0 (default), replace caret index with input value, else replace with '?'. 
         if (errorMsg != "")
             calcGraphicLines[2] = outputLine.Substring(0, caretIndex) + errorMsg + 
