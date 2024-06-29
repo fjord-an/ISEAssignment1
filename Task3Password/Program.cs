@@ -1,4 +1,4 @@
-﻿namespace Task3Password
+namespace Task3Password
 {
     class Program
     {
