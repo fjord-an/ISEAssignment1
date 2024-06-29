@@ -1,139 +1,92 @@
-﻿using System;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
+using System.Text;
 
 namespace Task3Password
 {
+    public class Verify
+    {
+        // Verify the password
+        public bool VerifyPassword(string password, string hash, byte[] salt, HashAlgorithmName hashAlgorithm)
+        {
+                
+            // Hash the password and salt using the same key derivation function to compare the hashes
+            var hashToCompare = Rfc2898DeriveBytes.Pbkdf2(password, salt, HashParameters.Iterations, hashAlgorithm,
+                HashParameters.KeySize);
+                
+            //return the result of the comparison of the two hashes using the CryptographicOperations.FixedTimeEquals method
+            //??? Create a fixed-time comparison to prevent timing attacks???
+            return CryptographicOperations.FixedTimeEquals(hashToCompare, Convert.FromHexString(hash));
+        }// The CryptographicOperations.FixedTimeEquals method is used to compare the hash to prevent timing attacks
+        // This is good practice for password hashing to prevent attackers from guessing the password based on the
+        // time it takes to compare the hashes
+    }
+
+    internal class NewPassword
+    {
+        public static void HashedPassword(string plainTextPassword)
+        {
+            HashAlgorithmName hashAlgorithm = HashAlgorithmName.SHA512; 
+            // The hash algorithm I am using to hash the password. It needs to be instantiated to use the Pbkdf2 method
+            // The method needs to use a struct field of the HashAlgorithmName type to hash the password with the salt
+            
+            string HashPasword(string password, out byte[] salt) 
+                // output parameter salt is declared in the method signature
+                // the plain text password is hashed and the salt is generated
+            {
+                salt = RandomNumberGenerator.GetBytes(HashParameters.KeySize);
+                var hash = Rfc2898DeriveBytes.Pbkdf2(Encoding.UTF8.GetBytes(password), salt,
+                    HashParameters.Iterations, hashAlgorithm, HashParameters.KeySize);
+                /* The Rfc2898DeriveBytes.Pbkdf2 method is used to hash the password with the salt. It takes 5 parameters:
+                 1. The password to hash, 2. The salt to use, 3. The number of iterations to perform on the password,
+                 4. The hash algorithm to use, 5. The key size of the hashed password. The Iterations and Keysize are
+                 defined in the HashParameters.cs file for convenience and consistency throughout the namespace */
+                
+                return Convert.ToHexString(hash);
+                // The hashed password is stored as a hexadecimal string to store in the file
+            }
+
+            var hash = HashPasword(plainTextPassword, out byte[] salt);
+            //output parameter. the out keyword is used to pass a reference
+            Console.WriteLine($"Password hash: {hash}");
+            Console.WriteLine($"Generated salt: {Convert.ToHexString(salt)}");
+            
+            bool verified = new Verify().VerifyPassword(plainTextPassword, hash, salt, hashAlgorithm);
+            if (verified) //The object will return true if the password is correct. it is compared to the hashed and salted password file 
+            {
+                Console.WriteLine("Access Granted");
+            }
+        }
+    }
+
     class Program
     {
         static void Main()
         {
-            Encrypt();
-        }
-        static void Encrypt()
-        {
+            Console.WriteLine("Enter a password: ");
+            string plainTextPassword = Console.ReadLine();
+
             try
             {
-                using (FileStream fileStream = new("TestData.txt", FileMode.OpenOrCreate))
+                if (plainTextPassword == null)
                 {
-                    using (Aes aes = Aes.Create())
-                    {
-                        byte[] key =
-                        {
-                            0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08,
-                            0x09, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16
-                        };
-                        aes.Key = key;
-
-                        byte[] iv = aes.IV;
-                        fileStream.Write(iv, 0, iv.Length);
-
-                        using (CryptoStream cryptoStream = new(
-                                   fileStream,
-                                   aes.CreateEncryptor(),
-                                   CryptoStreamMode.Write))
-                        {
-                            // By default, the StreamWriter uses UTF-8 encoding.
-                            // To change the text encoding, pass the desired encoding as the second parameter.
-                            // For example, new StreamWriter(cryptoStream, Encoding.Unicode).
-                            using (StreamWriter encryptWriter = new(cryptoStream))
-                            {
-                                encryptWriter.WriteLine("Hello World!");
-                            }
-                        }
-                    }
+                    throw new ArgumentNullException(nameof(plainTextPassword) + " is null.");
                 }
-
-                Console.WriteLine("The file was encrypted.");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"The encryption failed. {ex}");
-            }
-        }
+                else if (plainTextPassword.Length < 8 && plainTextPassword.Length > 24)
+                {
+                    Console.WriteLine("Password must be at least 8 characters long.");
+                    throw new ArgumentException(nameof(plainTextPassword) + " must be between 8 to 24 characters long.");
+                }
+                else
+                {
+                    NewPassword.HashedPassword(plainTextPassword);
     
-        //### NOTE! the .Any method can be used to check if a string contains a digit, letter, or special character
-        static void Example()
-        {
-            Console.WriteLine("Enter a password: ");
-            string password = Console.ReadLine();
-
-            if (password.Length < 8)
-            {
-                Console.WriteLine("Password must be at least 8 characters long.");
-            }
-            else
-            {
-                bool hasDigit = false;
-                bool hasLetter = false;
-                bool hasSpecialChar = false;
-
-                foreach (char i in password)
-                {
-                    if (char.IsDigit(i))
-                    {
-                        hasDigit = true;
-                    }
-                    else if (char.IsLetter(i))
-                    {
-                        hasLetter = true;
-                    }
-                    else
-                    {
-                        hasSpecialChar = true;
-                    }
-                }
-
-                if (hasDigit && hasLetter && hasSpecialChar)
-                {
-                    Console.WriteLine("Password is valid.");
-                }
-                else
-                {
-                    Console.WriteLine(
-                        "Password must contain at least one digit, one letter, and one special character.");
                 }
             }
-        }
-        // Example method (maybe incorrect for the quesiton, does not store the password in a variable and read it)
-        static void Example2()
-        {
-            do
+            catch (Exception e)
             {
-                bool hasDigit = false;
-                bool hasLetter = false;
-                bool hasSpecialChar = false;
-
-
-                string user_input;
-                Console.WriteLine(
-                    "Please enter password, password should include a mix of digits, number and one special character");
-                user_input = Convert.ToString(Console.ReadLine());
-                foreach (char i in user_input)
-                    if (char.IsDigit(i))
-                    {
-                        hasDigit = true;
-                    }
-                    else if (char.IsLetter(i))
-                    {
-                        hasLetter = true;
-                    }
-                    else
-                    {
-                        hasSpecialChar = true;
-                    }
-
-                if (hasDigit && hasLetter && hasSpecialChar)
-                {
-                    Console.WriteLine("Access granted. Welcome user!");
-                    Console.WriteLine("Goodbye");
-                    Console.ReadLine();
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine("Incorrect password, please try again.");
-                }
-            } while (true);
+                Console.WriteLine($"The password hashing failed. {e}");
+            }
+            
         }
     }
 }
