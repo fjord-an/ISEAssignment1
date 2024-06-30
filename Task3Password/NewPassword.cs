@@ -5,13 +5,13 @@ namespace Task3Password;
 
 internal class NewPassword
 {
-    public static void HashedPassword(string plainTextPassword)
+    public static void HashedPassword(string plainTextPassword, string username)
     {
         HashAlgorithmName hashAlgorithm = HashAlgorithmName.SHA512; 
         // The hash algorithm I am using to hash the password. It needs to be instantiated to use the Pbkdf2 method
         // The method needs to use a struct field of the HashAlgorithmName type to hash the password with the salt
             
-        string HashPasword(string password, out byte[] salt) 
+        string Hash(string password, out byte[] salt) 
             // output parameter salt is declared in the method signature
             // the plain text password is hashed and the salt is generated
         {
@@ -27,10 +27,13 @@ internal class NewPassword
             // The hashed password is stored as a hexadecimal string to store in the file
         }
 
-        var hash = HashPasword(plainTextPassword, out byte[] salt);
+        var hash = Hash(plainTextPassword, out byte[] salt);
         //output parameter. the out keyword is used to pass a reference
         Console.WriteLine($"Password hash: {hash}");
         Console.WriteLine($"Generated salt: {Convert.ToHexString(salt)}");
+
+        File.AppendAllText(username + ".txt", hash); //###MOSH Need to check wether this is the correct way to store the password
+        // and can it be compared in verify?
             
         bool verified = new Verify().VerifyPassword(plainTextPassword, hash, salt, hashAlgorithm);
         if (verified) //The object will return true if the password is correct. it is compared to the hashed and salted password file 
