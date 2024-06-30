@@ -7,11 +7,12 @@ namespace Calculator
         internal double Result;
         
         internal Equation(List<string> output, List<double> operands) // Constructor
-        {
+        {// the constructor takes in two arguments, a list of strings and a list of doubles
+            // the fields can be accessed by the properties of the class in the main() program
             this.Operations = output;
             this.Terms = operands;
             for(int i = 0; i < Operations.Count - 1; i++)
-                Result = Calculate(i);
+                this.Result = Calculate(i);
             // Call the Calculate method to calculate the result of the equation
         }
         

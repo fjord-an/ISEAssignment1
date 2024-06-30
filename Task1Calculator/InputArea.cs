@@ -20,7 +20,10 @@ internal class InputArea
         try 
         {
             char[] operators = ['+', '-', '*', '/', '%', '^'];
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.DarkRed;
             string rawInput = Console.ReadLine();
+            Console.ResetColor();
             string[] terms = rawInput.Split(operators);
             char[] rawChars = rawInput.ToCharArray();
             output.Add(rawInput);
@@ -29,7 +32,7 @@ internal class InputArea
             {// also check if the input is a valid integer, if not, throw an exception
                 double result = double.TryParse(i, out double num)
                     ? num // if the parsing is successful, assign the result to the num variable with ternary operator
-                    : throw new Exception("Invalid input (operands)"); // else throw an exception
+                    : throw new Exception("Invalid Terms (operands)"); // else throw an exception
                 operands.Add(num);
             }
 
@@ -48,7 +51,7 @@ internal class InputArea
                      }
                      else if (signCount == 0 && j == rawChars.Length)
                      {
-                         this.output.Add("Invalid input (operators)");
+                         this.output.Add("Invalid Signs (operators)");
                      }
                  }
             }
@@ -61,6 +64,11 @@ internal class InputArea
             if (operations.Count > this.operands.Count)
             {
                 throw new Exception("Invalid Operation Count");
+            }
+
+            if (rawInput.Length > 34)
+            {
+                throw new Exception("Input too long");
             }
             
             /*
@@ -80,6 +88,10 @@ internal class InputArea
         catch (Exception e)
         {
             output.Add(e.Message);
+            if (e.Message == "Input too long")
+            {
+                Program.Main();
+            }
             return new Equation(output, operands);
             // error message is passed with the exception message through the output paramter. the input is null.
             // that way the error message is displayed in the calculator graphic instead of the input
