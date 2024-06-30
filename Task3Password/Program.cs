@@ -6,17 +6,19 @@ namespace Task3Password
     {
             static void Main()
         {
-            // string userName = GetUserName();
-            //
-            // if (userName == "User Error")
-            // {
-            //     Console.WriteLine("An error occurred while creating the user account.");
-            //     return;
-            // }
+            /*
+             * This is the main method that will be used to run the password hashing program.
+             * It contains a login prompt that will ask the user for a password and username.
+             * It handles errors and the login flow. executing login related functions.
+             */
+            
             string[] userInfo = UserInfo.GetUserName("userName", "").Split(':');
             
             try
             {
+                Console.WriteLine("Enter a Password:");
+                string plainTextPassword = Console.ReadLine();
+                
                 string userName = userInfo[0];
                 string hashedPassword;
                 
@@ -32,15 +34,13 @@ namespace Task3Password
                     //https://learn.microsoft.com/en-us/dotnet/api/system.argumentnullexception?view=net-8.0
                 }
                 
-                FileStream fs = new FileStream("database.txt", FileMode.Open, FileAccess.ReadWrite);
-                
-                if (hashedPassword.Length is < 8 or > 24)
+                if (plainTextPassword.Length is < 8 or > 24)
                 {
                     throw new ArgumentException(" must be between 8 to 24 characters long.");
                 }
                 else
                 {
-                    NewPassword.HashedPassword(hashedPassword, userName);
+                    NewPassword.HashedPassword(plainTextPassword, userName);
                 }
             }
             catch (Exception e)

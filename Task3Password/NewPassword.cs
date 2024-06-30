@@ -5,7 +5,7 @@ namespace Task3Password;
 
 internal class NewPassword
 {
-    public static void HashedPassword(string plainTextPassword, string username)
+    public static void HashedPassword(string plainTextPassword, string userName)
     {
         HashAlgorithmName hashAlgorithm = HashAlgorithmName.SHA512; 
         // The hash algorithm I am using to hash the password. It needs to be instantiated to use the Pbkdf2 method
@@ -28,17 +28,24 @@ internal class NewPassword
         }
 
         var hash = Hash(plainTextPassword, out byte[] salt);
+        string hexSalt = Convert.ToHexString(salt); //### REFERENCE????
         //output parameter. the out keyword is used to pass a reference
+        
         Console.WriteLine($"Password hash: {hash}");
-        Console.WriteLine($"Generated salt: {Convert.ToHexString(salt)}");
-
-        File.AppendAllText(username + ".txt", hash); //###MOSH Need to check wether this is the correct way to store the password
+        Console.WriteLine($"Generated salt: {hexSalt}");
+        
+        using (StreamWriter sw = new StreamWriter("database.txt", true))
+        {// The StreamWriter object is encapsulated in the using statement so that the stream closes after writing
+            // the append overload was used to ensure that the file is not overwritten (true)
+            sw.Write($"{userName}:{hash}:{hexSalt}{Environment.NewLine}");
+            // The hashed password and salt are written to the file in the format "userName:hashedpassword:salt"
+            // The Environment.NewLine is used to ensure that the next entry is written on a new line regardless of the OS
+            // (\r\n for Windows, \n for Linux and MacOS)
+        }//#####################SOURCE USING????
+        
+        //###MOSH Need to check wether this is the correct way to store the password
         // and can it be compared in verify?
             
-        bool verified = new Verify().VerifyPassword(plainTextPassword, hash, salt, hashAlgorithm);
-        if (verified) //The object will return true if the password is correct. it is compared to the hashed and salted password file 
-        {
-            Console.WriteLine("Access Granted");
-        }
+        Verify.Login(userName, plainTextPassword, hash, salt, hashAlgorithm);
     }
 }
