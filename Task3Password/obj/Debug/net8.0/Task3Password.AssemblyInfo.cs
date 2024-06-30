@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Task3Password")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e1f88550a01cf677181b1234adb0c288d3f1b4be")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c5d9a0b6faf6e94e01bcd6d9766094f0a8a8e9e0")]
 [assembly: System.Reflection.AssemblyProductAttribute("Task3Password")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Task3Password")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

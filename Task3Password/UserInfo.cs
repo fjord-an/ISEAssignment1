@@ -4,6 +4,7 @@ class UserInfo
 {
     public static string GetUserName(string userName, string hashedPassword)
     {
+        Console.WriteLine("Enter your username:");
         userName = Console.ReadLine();
         hashedPassword = "";
 
@@ -48,7 +49,6 @@ class UserInfo
                     }
                     counter++;
                 }
-
                 return "User not found";
             }
         }
