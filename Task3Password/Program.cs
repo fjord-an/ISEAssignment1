@@ -56,9 +56,9 @@ namespace Task3Password
                         throw new ArgumentException("Username must be between 4 and 16 characters long.");
                     }
                     
-                    Console.WriteLine("Please enter password (Password must alphanumeric be between 8 and 24 characters" +
+                    Console.WriteLine("Please enter password\n(Password must alphanumeric be between 8 and 24 characters " +
                                       "long. It must contain alphanumeric characters, with at least 1 digit, number and " +
-                                      "special character)\n");
+                                      "special character)");
                     
                     string passwordBuffer = Console.ReadLine(); // The password is stored in a buffer to check the requirements
                     string confirmPassword;                     // The user is asked to confirm the password to avoid typos
@@ -103,7 +103,7 @@ namespace Task3Password
             }
             catch (Exception e)
             {
-                Console.WriteLine($"The password hashing failed. {e.Message}");
+                Console.WriteLine($"User creation failed. {e.Message}\nReturning to main menu...");
                 Main();
             }
         }

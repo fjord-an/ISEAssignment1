@@ -1,10 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "isbC9Ccn4ZtyMyNuOYlf6HAtaBbZB1c/7B3yIAq6P/Yyrz9hk4oUYS8BZgBl0Zrk2ajvtnRNLcNKhDCShFV4Nw==",
+  "dgSpecHash": "lHxakclrwzmfw/zHldp5NkcmLaC3jMVki1gu9tq3hHUC0WWGf3HAVSdGWXs4ITxyrdooWDp517rK7a8+PkpUUw==",
   "success": true,
-  "projectFilePath": "/home/spacey/projects/ISE102-Assignment1/Task2Grading/Task2Grading.csproj",
-  "expectedPackageFiles": [
-    "/home/spacey/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.6/microsoft.aspnetcore.app.ref.8.0.6.nupkg.sha512"
-  ],
+  "projectFilePath": "C:\\Users\\Jordan\\Programs\\projects\\ISE-Assignment1\\ISEAssignment1\\Task2Grading\\Task2Grading.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }

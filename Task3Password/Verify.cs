@@ -16,6 +16,12 @@ public class Verify
         {
             UserArea.UserPage(userName);
         }
+        else
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Access Denied! Incorrect password. Exiting...");
+            Console.ResetColor();
+        }
     }
     
     // The verification method is used to compare the hashed and salted password to the user's input and return a boolean

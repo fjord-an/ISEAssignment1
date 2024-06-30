@@ -8,24 +8,31 @@
     "net8.0": []
   },
   "packageFolders": {
-    "/home/spacey/.nuget/packages/": {}
+    "C:\\Users\\Jordan\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/spacey/projects/ISE102-Assignment1/Task2Grading/Task2Grading.csproj",
+      "projectUniqueName": "C:\\Users\\Jordan\\Programs\\projects\\ISE-Assignment1\\ISEAssignment1\\Task2Grading\\Task2Grading.csproj",
       "projectName": "Task2Grading",
-      "projectPath": "/home/spacey/projects/ISE102-Assignment1/Task2Grading/Task2Grading.csproj",
-      "packagesPath": "/home/spacey/.nuget/packages/",
-      "outputPath": "/home/spacey/projects/ISE102-Assignment1/Task2Grading/obj/",
+      "projectPath": "C:\\Users\\Jordan\\Programs\\projects\\ISE-Assignment1\\ISEAssignment1\\Task2Grading\\Task2Grading.csproj",
+      "packagesPath": "C:\\Users\\Jordan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Jordan\\Programs\\projects\\ISE-Assignment1\\ISEAssignment1\\Task2Grading\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/home/spacey/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\Jordan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -54,18 +61,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[8.0.6, 8.0.6]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.106/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -30,11 +30,18 @@ public class UserArea
             while ((line = fs.ReadLine()) != null)
             {
                 if (string.Equals(userName, line.Split(':')[0], StringComparison.OrdinalIgnoreCase)) 
+                    // String comparison Overload StringComparison.OrdinalIgnoreCase is used to ignore case sensitivity
                 {
                     string[] userDetails = line.Split(':');
                     Console.WriteLine($"Your SHA512 Hashed password:\n {userDetails[1]}");
                     Console.WriteLine($"Your salt:\n {userDetails[2]}");
+                    Console.WriteLine();
                     Console.ResetColor();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Please exit the program then try Logging into your account again with the passwo" +
+                                      "rd you created to test the encrypted password verifier feature with the" +
+                                      " database.txt! \n(press any key to exit)");
+                    Console.ReadKey();
                 }
                 else
                 {

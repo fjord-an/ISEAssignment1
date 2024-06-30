@@ -22,16 +22,16 @@ class UserInfo
             }
         }
         
-        StreamReader sr = new StreamReader(fi.FullName); // StreamReader is used to read from a file.
-        // HaiyingYu. (2022, May 8). Read from and write to a text file by Visual C#—C#.
-        // https://learn.microsoft.com/en-us/troubleshoot/developer/visualstudio/csharp/language-compilers/read-write-text-file
-        
         if (fi.Exists) // if the file does not exist, create it. This ensures that the file is created before writing to it.
         {
-            // code block adapted from:
-            //Ashutosh, G. (2019, November 29). How do I read a specific line in a text file and compare it with a string?
-            //- CodeProject. https://www.codeproject.com/Questions/5252393/How-do-I-read-a-specific-line-in-a-text-file-and-c
+            /*  code block adapted from:
+             *  Ashutosh, G. (2019, November 29). How do I read a specific line in a text file and compare it with a string?
+             *   - CodeProject. https://www.codeproject.com/Questions/5252393/How-do-I-read-a-specific-line-in-a-text-file-and-c
+             */
             
+            // StreamReader is used to read from a file.
+            // HaiyingYu. (2022, May 8). Read from and write to a text file by Visual C#—C#.
+            // https://learn.microsoft.com/en-us/troubleshoot/developer/visualstudio/csharp/language-compilers/read-write-text-file
             using (StreamReader fs = new StreamReader(fi.FullName))
             {
                 Console.WriteLine("Looking for Account...");
