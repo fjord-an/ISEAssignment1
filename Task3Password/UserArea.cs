@@ -6,8 +6,10 @@ public class UserArea
 {
     internal static void UserPage(string userName)
     {
+        // Console Colours: Byers, M. (2010, April 30). Answer to “Is it possible to write to the console in colour in .NET?”
+        // Stack Overflow. https://stackoverflow.com/a/2743268
         Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine($"\nAccess Granted, welcome {userName}!");
+        Console.WriteLine($"\nAccess Granted, welcome {userName}!"); //The successful login message as required by the task
         Console.ResetColor();
 
         Console.ForegroundColor = ConsoleColor.Blue;
@@ -22,11 +24,10 @@ public class UserArea
         // i am printing the secret stuff of the user (which is the password hash and salt)
         using (StreamReader fs = new StreamReader("database.txt"))
         {
-            int counter = 0;        // counter is used to keep track of the line number
-            string line;            // line is used to store the current line being read from the file
+            int counter = 0;
+            string line;
 
             while ((line = fs.ReadLine()) != null)
-                // ensures the line is correct, and not at the end of the file. In which case it would be null.
             {
                 if (string.Equals(userName, line.Split(':')[0], StringComparison.OrdinalIgnoreCase)) 
                 {

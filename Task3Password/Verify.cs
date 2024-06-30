@@ -2,8 +2,13 @@ using System.Security.Cryptography;
 
 namespace Task3Password;
 
-public class Verify // #####################SOURCE VERIFY????
+public class Verify
 {
+    /*
+     * This class has been adapted and supported by the tutorials provided by:
+     * Code Maze. (2022, November 28). Hashing and Salting Passwords in C#—Best Practices. Code Maze.
+     * https://code-maze.com/csharp-hashing-salting-passwords-best-practices/
+     */
     internal static void Login(string userName, string plainTextPassword, string hash, byte[] salt)
     { 
         bool verified = new Verify().VerifyPassword(plainTextPassword, hash, salt);
