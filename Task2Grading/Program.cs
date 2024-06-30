@@ -1,4 +1,6 @@
-﻿namespace Task2Grading
+﻿//# Created by Jordan Pacey. Student ID: A00144357
+
+namespace Task2Grading
 {
     internal static class Program
     {

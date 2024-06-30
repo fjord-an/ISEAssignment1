@@ -1,3 +1,5 @@
+//# Created by Jordan Pacey. Student ID: A00144357
+
 using System.Security.Cryptography;
 
 namespace Task3Password;

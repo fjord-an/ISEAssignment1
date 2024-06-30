@@ -1,4 +1,6 @@
-﻿namespace Calculator
+﻿//# Created by Jordan Pacey. Student ID: A00144357
+
+namespace Calculator
 {
     class Program
     {
